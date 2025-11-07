@@ -4,41 +4,6 @@ PoC Streamlit app that extracts structured job fields from uploaded/pasted/URL j
 
 This README explains how to deploy the app to Heroku and run it locally from the dev container (Ubuntu 24.04.2 LTS).
 
-## Files you already have
-- `app.py` — main Streamlit app
-- `LICENSE` — project license
-
-## Files to add before deploying
-
-Procfile (root)
-```sh
-web: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
-```
-
-requirements.txt (root)
-```txt
-streamlit
-openai
-requests
-beautifulsoup4
-python-docx
-pypdf
-```
-
-runtime.txt (optional)
-```txt
-python-3.11
-```
-
-Streamlit config (optional)
-Create `.streamlit/config.toml`:
-```toml
-[server]
-headless = true
-enableCORS = false
-port = 8501
-```
-
 ## Heroku deploy steps (CLI)
 1. Commit your repo:
 ```sh
