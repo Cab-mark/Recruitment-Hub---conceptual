@@ -3,13 +3,13 @@ import os
 import streamlit as st
 from openai import OpenAI
 
-st.set_page_config(page_title="Recruitment Hub - Interview Question Generator", page_icon="💬")
+st.set_page_config(page_title="Recruitment hub - Interview question generator", page_icon="💬")
 
 # ----- SETUP -----
 # Expect your key in env var; you can change this to st.secrets if you prefer
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-st.title("Interview Question Generator (mock)")
+st.title("Interview question generator (mock)")
 st.caption("Answer a few structured questions and I'll draft suitable interview questions.")
 
 # The structured steps we want the AI “agent” to ask

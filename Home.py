@@ -2,9 +2,9 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Recruitment Hub - Home", layout="wide")
+st.set_page_config(page_title="Recruitment hub - Home", layout="wide")
 
-st.title("Recruitment Hub (mock)")
+st.title("Recruitment hub (mock)")
 
 # ----------------------------------
 # 1. Mock data

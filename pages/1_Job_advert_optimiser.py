@@ -22,7 +22,7 @@ except ImportError:
 # --------------------------
 # CONFIG / CONSTANTS
 # --------------------------
-st.set_page_config(page_title="Recruitment Hub - Job Optimiser", page_icon="🧠")
+st.set_page_config(page_title="Recruitment hub - Job optimiser", page_icon="🧠")
 
 TARGET_SCHEMA = {
     "job_title": "",
@@ -266,9 +266,9 @@ Text:
 # MAIN UI
 # --------------------------
 
-st.title("Job Advert Optimiser (mock)")
+st.title("Job advert optimiser (mock)")
 st.write(
-    "Give me your job advert in **any format**. I’ll read it, pull out the Civil Service bits, and ask only for what’s missing."
+    "Give me your job advert in **any format**. I’ll read it, review it, and ask for missing information."
 )
 
 show_debug = st.toggle("Show debug info", value=False)
@@ -305,7 +305,7 @@ with tab1:
     else:
         url = st.text_input("Enter the URL to the job advert")
 
-    st.info("Once you’ve added a source, go to **2. Optimise content** and let the AI do the first pass.")
+    st.info("Once you’ve added a source, go to **Optimise content** tab and let the AI review and make recommendations.")
 
     # Provide extraction action directly on the Source tab
     if st.button("Extract from source"):
@@ -358,7 +358,7 @@ with tab2:
     st.subheader("3. Optimise content (optional)")
 
     if not st.session_state["extracted"]:
-        st.info("Run the extraction in **2. Extract** first.")
+        st.info("Run the extraction in the **Source** tab first.")
     else:
         st.write("I can improve the longer text fields (summary, responsibilities, criteria).")
 
@@ -401,7 +401,7 @@ with tab3:
     pending = st.session_state["pending_fields"]
 
     if not st.session_state["extracted"]:
-        st.info("Run the extraction in **2. Extract** first.")
+        st.info("Run the extraction in the **source** tab first.")
     else:
         # progress
         total = len(TARGET_SCHEMA)
