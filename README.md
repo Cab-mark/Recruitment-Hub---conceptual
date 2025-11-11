@@ -15,9 +15,16 @@ git commit -m "Prepare for Heroku"
 heroku create your-app-name
 git push heroku main
 ```
+2. Generate a hash key for login:
+```sh
+python - <<'PY'
+import hashlib; print(hashlib.sha256(b"letmein").hexdigest())
+PY
+```
 3. Set required environment variable:
 ```sh
 heroku config:set OPENAI_API_KEY="sk-..."
+heroku config:set APP_PW_HASH="..."
 ```
 4. Scale and open:
 ```sh
@@ -37,7 +44,7 @@ heroku logs --tail
 Install deps and run locally:
 ```sh
 pip install -r requirements.txt
-streamlit run app.py
+streamlit run Home.py
 ```
 Open locally in host browser:
 ```sh
@@ -45,7 +52,7 @@ $BROWSER http://localhost:8501
 ```
 
 ## Notes
-- The app expects the env var `OPENAI_API_KEY`.
+- The app expects the env var `OPENAI_API_KEY` and `APP_PW_HASH`.
 - `python-docx` and `pypdf` are optional; include them only if you need DOCX/PDF parsing.
-- If you use a different OpenAI SDK version, verify the client calls in `app.py`.
+- If you use a different OpenAI SDK version, verify the client calls in the pages using language models.
 - This workspace runs in a dev container on Ubuntu 24.04.2 LTS. Use `$BROWSER <url>` to open pages in the host's default browser from the container.
