@@ -13,6 +13,7 @@ st.info('The hub (lightweight UI) could provide reporting services like this via
 # ----------------------------------
 # 1. Mock data
 # ----------------------------------
+
 jobs_data = [
     {"job_id": "CSJ-0001", "job_title": "Senior Product Manager", "status": "Advertised", "views": 234},
     {"job_id": "CSJ-0002", "job_title": "Performance Analyst", "status": "Draft", "views": 0},
