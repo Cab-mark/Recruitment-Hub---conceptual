@@ -2,3 +2,6 @@
 headless = true
 enableCORS = false
 port = 8501
+
+[theme]
+primaryColor = "#28a197"

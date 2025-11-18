@@ -1,75 +1,87 @@
-# pages/1_Dashboard.py
 from password_gate import require_password
 require_password()
 import streamlit as st
-import pandas as pd
 
-st.set_page_config(page_title="Recruitment hub - Home", layout="wide")
-
-st.title("Recruitment hub (mock)")
-
-st.info('The hub (lightweight UI) could provide reporting services like this via a GRID data connection or by talking to the future Civil Service Jobs APIs.', icon="ℹ️")
-
-# ----------------------------------
-# 1. Mock data
-# ----------------------------------
-
-jobs_data = [
-    {"job_id": "CSJ-0001", "job_title": "Senior Product Manager", "status": "Advertised", "views": 234},
-    {"job_id": "CSJ-0002", "job_title": "Performance Analyst", "status": "Draft", "views": 0},
-    {"job_id": "CSJ-0003", "job_title": "Service Designer", "status": "Advertised", "views": 178},
-    {"job_id": "CSJ-0004", "job_title": "Interaction Designer", "status": "Closed", "views": 421},
-    {"job_id": "CSJ-0005", "job_title": "Delivery Manager", "status": "Draft", "views": 0},
-    {"job_id": "CSJ-0006", "job_title": "Technical Architect", "status": "Closed", "views": 355},
-    {"job_id": "CSJ-0007", "job_title": "Recruitment Lead", "status": "Advertised", "views": 292},
-]
-
-df = pd.DataFrame(jobs_data)
-
-# quick counts
-draft_count = (df["status"] == "Draft").sum()
-advertised_count = (df["status"] == "Advertised").sum()
-closed_count = (df["status"] == "Closed").sum()
-total_count = len(df)
-published_views = df[df["status"].isin(["Advertised", "Closed"])]["views"].sum()
-
-# ----------------------------------
-# 2. Scorecards
-# ----------------------------------
-col1, col2, col3, col4, col5 = st.columns(5)
-col1.metric("Jobs in draft", draft_count)
-col2.metric("Jobs advertised", advertised_count)
-col3.metric("Jobs closed", closed_count)
-col4.metric("Total jobs", total_count)
-col5.metric("Total advert views", published_views)
-
-st.markdown("---")
-
-# ----------------------------------
-# 3. Mini tables per status
-# ----------------------------------
-c1, c2, c3 = st.columns(3)
-
-with c1:
-    st.subheader("Draft")
-    st.dataframe(
-        df[df["status"] == "Draft"][["job_id", "job_title"]],
-        use_container_width=True,
-        hide_index=True
+def recruitment_hub_page():
+    # --- Page Configuration ---
+    st.set_page_config(
+        page_title="GPG Recruitment Hub Concept",
+        layout="wide",
+        initial_sidebar_state="collapsed"
     )
 
-with c2:
-    st.subheader("Advertised")
-    st.dataframe(
-        df[df["status"] == "Advertised"][["job_id", "job_title", "views"]],
-        use_container_width=True,
-        hide_index=True
-    )
+    # --- Title and Introduction ---
+    st.title("🏛️ Government People Group (GPG) Recruitment Hub")
+    st.markdown("""
+        The GPG Recruitment Hub is envisioned as a **unified, one-stop digital portal** designed to streamline and enhance all GPG-owned recruitment services.
+        It aims to consolidate tools, data, and access points for users across the government ecosystem, supporting efficiency and data-driven decisions.
+    """)
+    st.subheader("Key Vision: A Single Source for GPG Recruitment Excellence")
+    st.markdown("---")
 
-with c3:
-    st.subheader("Closed")
-    st.dataframe(
-        df[df["status"] == "Closed"][["job_id", "job_title", "views"]],
-        use_container_width=True,
-        hide_index=True
-    )
+    # --- Core Capabilities Section ---
+    st.header("✨ Core Capabilities of the Recruitment Hub")
+
+    # Capability 1: One-Stop Shop
+    st.subheader("1. Unified Service Access")
+    st.markdown("""
+        The hub will act as a **one-stop shop** for accessing all **GPG-owned recruitment services**. 
+        This simplifies the user journey by providing a single, intuitive place to start, replacing disparate links and systems.
+    """)
+
+    # Capability 2: Data Insight (GRID Interface)
+    st.subheader("2. People Data & Insights (GRID Interface)")
+    st.markdown("""
+        Enables users to interact with **people-related data insight tools** by interfacing directly with the **GRID (Government Research & Insights Database)**. 
+        This capability supports data-driven decision-making in recruitment strategy and talent mapping.
+    """)
+    
+    # Capability 3: Job Advert Optimiser
+    st.subheader("3. Job Advert Optimiser Capability")
+    st.markdown("""
+        Provides direct access to the **GPG Job Advert Optimiser capability**. 
+        This tool helps hiring managers and HR teams create clearer, more inclusive, and higher-performing job advertisements.
+    """)
+
+    # Capability 4: Job Posting Portal
+    st.subheader("4. Central Job Posting Portal (Potential)")
+    st.markdown("""
+        The hub **could become the portal for posting jobs**, particularly if technical or practical challenges prevent all jobs from being posted solely through the Shared Services for Government cluster ERPs (Enterprise Resource Planning systems).
+    """)
+
+    # Capability 5: ERP Integration Documentation
+    st.subheader("5. ERP Engineer Integration Documents")
+    st.markdown("""
+        For **ERP engineers and technical teams**, the hub will provide a dedicated area for accessing critical **integration documentation**. 
+        This includes documents for processes like Employee Transfer, CEI (Common External Interface), and CS Jobs developer documentation.
+    """)
+
+    # Capability 6: Online Testing Interface
+    st.subheader("6. Online Test and Assessment Interface")
+    st.markdown("""
+        It could provide a straightforward **interface for setting up Online Test and Assessment test sessions**, standardising and centralising the initial candidate screening process.
+    """)
+
+    st.markdown("---")
+    
+    # --- Implementation & Access Sections ---
+
+    st.header("⚙️ Implementation & Governance")
+
+    # Capability 7: Iterative Development
+    st.subheader("7. Iterative and Incremental Development")
+    st.success("""
+        The hub will be developed **iteratively and incrementally** based on evolving business priorities and user feedback. 
+        This ensures rapid delivery of high-value features and allows the system to adapt efficiently.
+    """)
+
+    # Capability 8: Role-Based Access Management (RBAC)
+    st.subheader("8. Role-Based Access Management (RBAC)")
+    st.warning("""
+        A **Role-Based Access Management capability** could be overlayed, ensuring users only see and interact with options appropriate to their role (e.g., a Hiring Manager sees different features than an ERP Engineer).
+    """)
+    
+
+# Run the page function
+if __name__ == "__main__":
+    recruitment_hub_page()
